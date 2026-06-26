@@ -1,0 +1,28 @@
+services:
+  dashboard:
+    image: ghcr.io/saleor/saleor-dashboard:3.23
+    restart: unless-stopped
+    ports:
+      - "9000:80"
+    environment:
+      - API_URL=${API_URL:-http://localhost:8000/graphql/}
+      - APP_MOUNT_URI=/
+      - LOCALE_CODE=EN
+
+  # Opcional: rode junto com o backend se quiser tudo aqui
+  # Comente as linhas abaixo se o backend já estiver rodando separado
+  # db:
+  #   image: postgres:15-alpine
+  #   environment:
+  #     POSTGRES_USER: saleor
+  #     POSTGRES_PASSWORD: saleor
+  #   volumes:
+  #     - pgdata:/var/lib/postgresql/data
+  # cache:
+  #   image: valkey/valkey:8-alpine
+  #   volumes:
+  #     - cachedata:/data
+
+# volumes:
+#   pgdata:
+#   cachedata:

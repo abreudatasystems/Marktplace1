@@ -1,0 +1,1 @@
+export { TranslationsProductVariantsPage } from "./TranslationsProductVariantsPage";

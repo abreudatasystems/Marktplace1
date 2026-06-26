@@ -1,0 +1,1 @@
+export { TranslationsCollectionsPage } from "./TranslationsCollectionsPage";
