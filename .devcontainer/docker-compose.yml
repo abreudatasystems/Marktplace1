@@ -24,13 +24,13 @@ services:
   db:
     image: docker.io/library/postgres:15-alpine
     ports:
-      - 5432:5432
+      - 25432:5432
     restart: unless-stopped
     volumes:
-      - saleor-db:/var/lib/postgresql/data
+      - saleor-db-fresh:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=saleor
-      - POSTGRES_PASSWORD=saleor
+      - POSTGRES_HOST_AUTH_METHOD=trust
 
   cache:
     image: docker.io/valkey/valkey:8.1-alpine
@@ -38,7 +38,7 @@ services:
     volumes:
       - saleor-cache:/data
     ports:
-      - 6379:6379
+      - 6380:6379
 
   mailpit:
     image: docker.io/axllent/mailpit
@@ -48,7 +48,7 @@ services:
     restart: unless-stopped
 
 volumes:
-  saleor-db:
+  saleor-db-fresh:
     driver: local
   saleor-cache:
     driver: local
